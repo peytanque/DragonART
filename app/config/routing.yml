@@ -1,0 +1,4 @@
+# /Users/r_durand/Web/DragonART/app/config/routing.yml
+dr_platform:
+    resource: "@DRPlatformBundle/Resources/config/routing.yml"
+    prefix:   /

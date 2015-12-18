@@ -1,0 +1,39 @@
+{% extends "DRPlatformBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Visualiser{% endblock %}
+
+    {% block body %}
+
+        {# visualiser #}
+        <div class="container" style="color:#d9534f" id"visualiser_title">
+            <h1>Visualiser</h1>
+        </div>
+        <div class="container">
+            <table class="table table-striped">
+                <tr>
+                    <td align="center">ID d'achat</td>
+                    <td align="center">Dossier</td>
+                    <td align="center">Bon de Commande</td>
+                    <td align="center">Fournisseur</td>
+                    <td align="center">Client</td>
+                    <td align="center">Référence</td>
+                    <td align="center">Nom</td>
+                    <td align="center">Lien</td>
+                    <td align="center">Prix</td>
+                </tr>
+                {% for table in tables %}
+                    <tr>
+                        <td align="center">{{ table.getId }}</td>
+                        <td align="center">{{ table.getIddossier.getProjet }}</td>
+                        <td align="center">{{ table.getIdbdc.getNumbdc }}</td>
+                        <td align="center">{{ table.getIdfournisseur.getNom }}</td>
+                        <td align="center">{{ table.getClient }}</td>
+                        <td align="center">{{ table.getNumref }}</td>
+                        <td align="center">{{ table.getNomvisuel }}</td>
+                        <td align="center"><a href="{{ table.getFileLink }}">Lien</a></td>
+                        <td align="center">{{ table.getPrix }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% endblock %}

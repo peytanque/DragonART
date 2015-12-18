@@ -1,0 +1,14 @@
+# /Users/r_durand/Web/DragonART/src/DR/PlatformBundle/Resources/config/routing.yml
+dr_index:
+    path:     /
+    defaults: { _controller: DRPlatformBundle:Art:index }
+
+dr_view:
+    path:     /view
+    defaults: { _controller: DRPlatformBundle:Art:view }
+
+# Liste d'ajouts
+dr_add:
+    path:     /add
+    defaults: { _controller: DRPlatformBundle:Art:add }
+

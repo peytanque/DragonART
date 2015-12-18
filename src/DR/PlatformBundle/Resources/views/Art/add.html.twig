@@ -1,0 +1,139 @@
+{% extends "DRPlatformBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Ajouter{% endblock %}
+
+    {% block body %}
+        <div class="container">
+            {# type + folder #}
+            <div id="formFolder" class="col-lg-6">
+                <h3>Ajouter un Dossier</h3>
+                <div class="well">
+                    {{ form_start(addFolder) }}
+                    <div class="form-group" id="refnum_formFolder">
+                        {{ form_label(addFolder.refnum, "Références : ") }}
+                        {{ form_widget(addFolder.refnum, {'attr': {'class': 'form-control', 'placeholder': 'Références du dossier'}}) }}
+                    </div>
+                    <div class="form-group" id="name_formFolder">
+                        {{ form_label(addFolder.name, "Nom : ") }}
+                        {{ form_widget(addFolder.name, {'attr': {'class': 'form-control', 'placeholder': 'Nom du dossier'}}) }}
+                    </div>
+                        {{form_widget(addFolder.save, {'label':'Ajouter','attr': {'class': 'btn btn-success'}}) }}
+                    {{ form_end(addFolder) }}
+                </div>
+            </div>
+        </div>
+        {# supplier + customer #}
+        <div class="row">
+            <div class="col-lg-6" align="center" id="formSupplier">
+                <h3>Ajouter un fournisseur</h3>
+                <div class="well">
+                    {{ form(addSupplier) }}
+                </div>
+            </div>
+            <div class="col-lg-6" align="center" id="formCustomer">
+                <h3>Ajouter un client</h3>
+                <div class="well">
+                    {{ form(addCustomer) }}
+                </div>
+            </div>
+        </div>
+        {# area + support #}
+        <div class="row">
+            <div class="col-lg-6" align="center" id="formArea">
+                <h3>Ajouter une région</h3>
+                <div class="well">
+                    {{ form(addArea) }}
+                </div>
+            </div>
+            <div class="col-lg-6" align="center" id="formSupport">
+                <h3>Ajouter un support</h3>
+                <div class="well">
+                    {{ form(addSupport) }}
+                </div>
+            </div>
+        </div>
+    </div>
+        {# <div class="container">
+            <table width="100%" border="1">
+                <tr>
+                    <td width="50%">
+                        <form>
+                            <h4 align="center">Dossier</h4>
+                            <div class="row">
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" placeholder="Numero de dossier" id="num_dossier"/>
+                                </div>
+                                <div class="col-lg-1"></div>
+                            </div></br>
+                            <div class="row">
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" placeholder="Nom du dossier/projet" id="projet_dossier"/>
+                                </div>
+                                <div class="col-lg-1"></div>
+                            </div></br>   
+                            <div class="row">
+                                <p align="center">
+                                    <button type="submit" class="btn btn-success" align="center">Ajouter !</button>
+                                </p>
+                            </div>
+                        </form>
+                    </td>
+                    <td width="50%">
+                        <form>
+                            <h4 align="center">Bon de commande</h4>
+                            <div class="row">
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" placeholder="Numero de bon de commande" id="num_bdc">
+                                </div>
+                                <div class="col-lg-1"></div>
+                            </div></br>
+                            <div class="row">
+                                <p align="center">
+                                    <button type="submit" class="btn btn-success" align="center">Ajouter !</button>
+                                </p>
+                            </div>
+                        </form>                    
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%">
+                        <form>
+                            <h4 align="center">Fournisseur</h4>
+                            <div class="row">
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" placeholder="Nom fournisseur" id="nom_fournisseur">
+                                </div>
+                                <div class="col-lg-1"></div>
+                            </div></br>
+                            <div class="row">
+                                <p align="center">
+                                    <button type="submit" class="btn btn-success" align="center">Ajouter !</button>
+                                </p>
+                            </div>
+                        </form>
+                    </td>
+                    <td width="50%">
+                        <form>
+                            <h4 align="center">Client</h4>
+                            <div class="row">
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" placeholder="Nom du client" id="nom_client">
+                                </div>
+                                <div class="col-lg-1"></div>
+                            </div></br>
+                            <div class="row">
+                                <p align="center">
+                                    <button type="submit" class="btn btn-success" align="center">Ajouter !</button>
+                                </p>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div> #}
+    {% endblock %}
