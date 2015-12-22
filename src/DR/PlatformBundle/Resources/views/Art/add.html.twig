@@ -4,7 +4,28 @@
 
     {% block body %}
         <div class="container">
-            {# type + folder #}
+            <div id="formArtpurchase">
+                 <h3>Ajouter un Achat</h3>
+                 <div class="well">
+                    {{ form(addArtpurchase) }}
+                 </div>
+            </div>
+        </div>
+        <div class="container">
+            {# Ajouter un Type#}
+            <div id="formType" class="col-lg-6">
+                <h3>Ajouter un Type</h3>
+                <div class="well">
+                    {{ form_start(addType) }}
+                    <div class="form-group" id="name_formType">
+                        {{ form_label(addType.name, "Nom : ") }}
+                        {{ form_widget(addType.name, {'attr': {'class': 'form-control', 'placeholder': 'Nom du type'}}) }}
+                    </div>
+                    {{form_widget(addType.save, {'label':'Ajouter','attr': {'class': 'btn btn-success'}}) }}
+                    {{ form_end(addType) }}
+                </div>
+            </div>
+            {# Ajouter un Dossier#}
             <div id="formFolder" class="col-lg-6">
                 <h3>Ajouter un Dossier</h3>
                 <div class="well">
@@ -17,42 +38,63 @@
                         {{ form_label(addFolder.name, "Nom : ") }}
                         {{ form_widget(addFolder.name, {'attr': {'class': 'form-control', 'placeholder': 'Nom du dossier'}}) }}
                     </div>
-                        {{form_widget(addFolder.save, {'label':'Ajouter','attr': {'class': 'btn btn-success'}}) }}
+                    {{form_widget(addFolder.save, {'label':'Ajouter','attr': {'class': 'btn btn-success'}}) }}
                     {{ form_end(addFolder) }}
                 </div>
             </div>
+            {# Ajouter un Fournisseur#}
+            <div id="formSupplier" class="col-lg-6">
+                <h3>Ajouter un Fournisseur</h3>
+                <div class="well">
+                    {{ form_start(addSupplier) }}
+                    <div class="form-group" id="society_formSupplier">
+                        {{ form_label(addSupplier.suppliersociety, "Société : ") }}
+                        {{ form_widget(addSupplier.suppliersociety, {'attr': {'class': 'form-control', 'placeholder': 'Nom de la société'}}) }}
+                    </div>
+                    {{form_widget(addSupplier.save, {'label':'Ajouter','attr': {'class': 'btn btn-success'}}) }}
+                    {{ form_end(addSupplier) }}
+                </div>
+            </div>
+            {# Ajouter un Client#}
+            <div id="formCustomer" class="col-lg-6">
+                <h3>Ajouter un Client</h3>
+                <div class="well">
+                    {{ form_start(addCustomer) }}
+                    <div class="form-group" id="society_formCustomer">
+                        {{ form_label(addCustomer.customersociety, "Société : ") }}
+                        {{ form_widget(addCustomer.customersociety, {'attr': {'class': 'form-control', 'placeholder': 'Nom de la société'}}) }}
+                    </div>
+                    {{form_widget(addCustomer.save, {'label':'Ajouter','attr': {'class': 'btn btn-success'}}) }}
+                    {{ form_end(addCustomer) }}
+                </div>
+            </div>
+            {# Ajouter une Zone#}
+            <div id="formArea" class="col-lg-6">
+                <h3>Ajouter une Zone</h3>
+                <div class="well">
+                    {{ form_start(addArea) }}
+                    <div class="form-group" id="country_formArea">
+                        {{ form_label(addArea.country, "Pays : ") }}
+                        {{ form_widget(addArea.country, {'attr': {'class': 'form-control', 'placeholder': 'Nom du pays'}}) }}
+                    </div>
+                    {{form_widget(addArea.save, {'label':'Ajouter','attr': {'class': 'btn btn-success'}}) }}
+                    {{ form_end(addArea) }}
+                </div>
+            </div>
+            {# Ajouter un Support#}
+            <div id="formSupport" class="col-lg-6">
+                <h3>Ajouter un Support</h3>
+                <div class="well">
+                    {{ form_start(addSupport) }}
+                    <div class="form-group" id="name_formSupport">
+                        {{ form_label(addSupport.name, "Nom : ") }}
+                        {{ form_widget(addSupport.name, {'attr': {'class': 'form-control', 'placeholder': 'Nom du support'}}) }}
+                    </div>
+                    {{form_widget(addSupport.save, {'label':'Ajouter','attr': {'class': 'btn btn-success'}}) }}
+                    {{ form_end(addSupport) }}
+                </div>
+            </div>
         </div>
-        {# supplier + customer #}
-        <div class="row">
-            <div class="col-lg-6" align="center" id="formSupplier">
-                <h3>Ajouter un fournisseur</h3>
-                <div class="well">
-                    {{ form(addSupplier) }}
-                </div>
-            </div>
-            <div class="col-lg-6" align="center" id="formCustomer">
-                <h3>Ajouter un client</h3>
-                <div class="well">
-                    {{ form(addCustomer) }}
-                </div>
-            </div>
-        </div>
-        {# area + support #}
-        <div class="row">
-            <div class="col-lg-6" align="center" id="formArea">
-                <h3>Ajouter une région</h3>
-                <div class="well">
-                    {{ form(addArea) }}
-                </div>
-            </div>
-            <div class="col-lg-6" align="center" id="formSupport">
-                <h3>Ajouter un support</h3>
-                <div class="well">
-                    {{ form(addSupport) }}
-                </div>
-            </div>
-        </div>
-    </div>
         {# <div class="container">
             <table width="100%" border="1">
                 <tr>

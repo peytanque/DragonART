@@ -5,33 +5,48 @@
     {% block body %}
 
         {# visualiser #}
-        <div class="container" style="color:#d9534f" id"visualiser_title">
-            <h1>Visualiser</h1>
+        <div style="color:#d9534f" id"visualiser_title">
+            <h1>&nbsp;&nbsp;&nbsp;Visualiser</h1>
         </div>
-        <div class="container">
-            <table class="table table-striped">
+        <div>
+            <table class="table table-striped" border="1px">
                 <tr>
-                    <td align="center">ID d'achat</td>
-                    <td align="center">Dossier</td>
-                    <td align="center">Bon de Commande</td>
-                    <td align="center">Fournisseur</td>
-                    <td align="center">Client</td>
-                    <td align="center">Référence</td>
-                    <td align="center">Nom</td>
-                    <td align="center">Lien</td>
-                    <td align="center">Prix</td>
+                    {# 16 #}
+                    <td align="center" width="4%">ID</td>
+                    <td align="center" width="8%">Nom</td>
+                    <td align="center" width="4%">Lien</td>
+                    <td align="center" width="4%">Prix</td>
+                    <td align="center" width="6%">Références</td>
+                    <td align="center" width="6%">Type</td>
+                    <td align="center" width="8%">Dossier</td>
+                    <td align="center" width="4%">BDC</td>
+                    <td align="center" width="8%">Fournisseur</td>
+                    <td align="center" width="8%">Client</td>
+                    <td align="center" width="7%">Date début</td>
+                    <td align="center" width="7%">Date fin</td>
+                    <td align="center" width="8%">Zone</td>
+                    <td align="center" width="8%">Support</td>
+                    <td align="center" width="4%">Exemplaires</td>
+                    <td align="center" width="4%">Commentaires</td>
                 </tr>
                 {% for table in tables %}
                     <tr>
                         <td align="center">{{ table.getId }}</td>
-                        <td align="center">{{ table.getIddossier.getProjet }}</td>
-                        <td align="center">{{ table.getIdbdc.getNumbdc }}</td>
-                        <td align="center">{{ table.getIdfournisseur.getNom }}</td>
-                        <td align="center">{{ table.getClient }}</td>
-                        <td align="center">{{ table.getNumref }}</td>
-                        <td align="center">{{ table.getNomvisuel }}</td>
-                        <td align="center"><a href="{{ table.getFileLink }}">Lien</a></td>
-                        <td align="center">{{ table.getPrix }}</td>
+                        <td align="center">{{ table.getVisualname }}</td>
+                        <td align="center"><a href="{{ table.getLinkfile }}">Lien</a></td>
+                        <td align="center">{{ table.getCost }}</td>
+                        <td align="center">{{ table.getRefnum }}</td>
+                        <td align="center">{{ table.getType.getName }}</td>
+                        <td align="center">{{ table.getFolder.getName }}</td>
+                        <td align="center">{{ table.getOrderform }}</td>                    
+                        <td align="center">{{ table.getSupplier.getSuppliersociety }}</td>
+                        <td align="center">{{ table.getCustomer.getCustomersociety }}</td>
+                        <td align="center">{{ table.getStartdate|date('Y-m-d') }}</td>
+                        <td align="center">{{ table.getEnddate|date('Y-m-d') }}</td>
+                        <td align="center">{{ table.getArea.getCountry }}</td>
+                        <td align="center">{{ table.getSupport.getName }}</td>
+                        <td align="center">{{ table.getCopy }}</td>
+                        <td align="center">{{ table.getComment }}</td>
                     </tr>
                 {% endfor %}
             </table>

@@ -24,9 +24,9 @@ class Customer
     /**
      * @var string
      *
-     * @ORM\Column(name="society", type="string", length=255, unique=true)
+     * @ORM\Column(name="customersociety", type="string", length=255, unique=true)
      */
-    private $society;
+    private $customersociety;
 
 
     /**
@@ -40,27 +40,27 @@ class Customer
     }
 
     /**
-     * Set society
+     * Set customersociety
      *
-     * @param string $society
+     * @param string $customersociety
      *
      * @return Customer
      */
-    public function setSociety($society)
+    public function setCustomersociety($customersociety)
     {
-        $this->society = $society;
+        $this->customersociety = $customersociety;
 
         return $this;
     }
 
     /**
-     * Get society
+     * Get customersociety
      *
      * @return string
      */
-    public function getSociety()
+    public function getCustomersociety()
     {
-        return $this->society;
+        return $this->customersociety;
     }
 }
 

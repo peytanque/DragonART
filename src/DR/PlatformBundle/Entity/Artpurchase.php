@@ -49,20 +49,17 @@ class Artpurchase
      */
     private $refnum;
 // -----------------------------------FOREIGN KEY---------------------------------------
-
     /**
     * @ORM\ManyToOne(targetEntity="Type")
     * @ORM\JoinColumn(nullable=false)
     */
     private $type;
-
     /**
     * @ORM\ManyToOne(targetEntity="Folder")
     * @ORM\JoinColumn(nullable=false)
     */
     private $folder;
 // -------------------------------------------------------------------------------------
-
     /**
      * @var string
      *
@@ -70,20 +67,17 @@ class Artpurchase
      */
     private $orderform;
 // -----------------------------------FOREIGN KEY---------------------------------------
-
     /**
     * @ORM\ManyToOne(targetEntity="Supplier")
     * @ORM\JoinColumn(nullable=false)
     */
     private $supplier;
-
     /**
     * @ORM\ManyToOne(targetEntity="Customer")
     * @ORM\JoinColumn(nullable=false)
     */
     private $customer;
 // -------------------------------------------------------------------------------------
-
     /**
      * @var \DateTime
      *
@@ -98,24 +92,21 @@ class Artpurchase
      */
     private $enddate;
 // -----------------------------------FOREIGN KEY---------------------------------------
-
     /**
     * @ORM\ManyToMany(targetEntity="Area")
     * @ORM\JoinColumn(nullable=false)
     */
     private $area;
-
     /**
     * @ORM\ManyToMany(targetEntity="Support")
     * @ORM\JoinColumn(nullable=false)
     */
     private $support;
 // -------------------------------------------------------------------------------------
-
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="copy", type="integer", nullable=true)
+     * @ORM\Column(name="copy", type="string", length=255, nullable=true)
      */
     private $copy;
 
@@ -234,6 +225,30 @@ class Artpurchase
     }
 
     /**
+     * Set orderform
+     *
+     * @param string $orderform
+     *
+     * @return Artpurchase
+     */
+    public function setOrderform($orderform)
+    {
+        $this->orderform = $orderform;
+
+        return $this;
+    }
+
+    /**
+     * Get orderform
+     *
+     * @return string
+     */
+    public function getOrderform()
+    {
+        return $this->orderform;
+    }
+
+    /**
      * Set startdate
      *
      * @param \DateTime $startdate
@@ -284,7 +299,7 @@ class Artpurchase
     /**
      * Set copy
      *
-     * @param integer $copy
+     * @param string $copy
      *
      * @return Artpurchase
      */
@@ -298,7 +313,7 @@ class Artpurchase
     /**
      * Get copy
      *
-     * @return int
+     * @return string
      */
     public function getCopy()
     {
@@ -328,5 +343,176 @@ class Artpurchase
     {
         return $this->comment;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->area = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->support = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Set type
+     *
+     * @param \DR\PlatformBundle\Entity\Type $type
+     *
+     * @return Artpurchase
+     */
+    public function setType(\DR\PlatformBundle\Entity\Type $type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return \DR\PlatformBundle\Entity\Type
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set folder
+     *
+     * @param \DR\PlatformBundle\Entity\Folder $folder
+     *
+     * @return Artpurchase
+     */
+    public function setFolder(\DR\PlatformBundle\Entity\Folder $folder)
+    {
+        $this->folder = $folder;
+
+        return $this;
+    }
+
+    /**
+     * Get folder
+     *
+     * @return \DR\PlatformBundle\Entity\Folder
+     */
+    public function getFolder()
+    {
+        return $this->folder;
+    }
+
+    /**
+     * Set supplier
+     *
+     * @param \DR\PlatformBundle\Entity\Supplier $supplier
+     *
+     * @return Artpurchase
+     */
+    public function setSupplier(\DR\PlatformBundle\Entity\Supplier $supplier)
+    {
+        $this->supplier = $supplier;
+
+        return $this;
+    }
+
+    /**
+     * Get supplier
+     *
+     * @return \DR\PlatformBundle\Entity\Supplier
+     */
+    public function getSupplier()
+    {
+        return $this->supplier;
+    }
+
+    /**
+     * Set customer
+     *
+     * @param \DR\PlatformBundle\Entity\Customer $customer
+     *
+     * @return Artpurchase
+     */
+    public function setCustomer(\DR\PlatformBundle\Entity\Customer $customer)
+    {
+        $this->customer = $customer;
+
+        return $this;
+    }
+
+    /**
+     * Get customer
+     *
+     * @return \DR\PlatformBundle\Entity\Customer
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+
+    /**
+     * Add area
+     *
+     * @param \DR\PlatformBundle\Entity\Area $area
+     *
+     * @return Artpurchase
+     */
+    public function addArea(\DR\PlatformBundle\Entity\Area $area)
+    {
+        $this->area[] = $area;
+
+        return $this;
+    }
+
+    /**
+     * Remove area
+     *
+     * @param \DR\PlatformBundle\Entity\Area $area
+     */
+    public function removeArea(\DR\PlatformBundle\Entity\Area $area)
+    {
+        $this->area->removeElement($area);
+    }
+
+    /**
+     * Get area
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getArea()
+    {
+        return $this->area;
+    }
+
+    /**
+     * Add support
+     *
+     * @param \DR\PlatformBundle\Entity\Support $support
+     *
+     * @return Artpurchase
+     */
+    public function addSupport(\DR\PlatformBundle\Entity\Support $support)
+    {
+        $this->support[] = $support;
+
+        return $this;
+    }
+
+    /**
+     * Remove support
+     *
+     * @param \DR\PlatformBundle\Entity\Support $support
+     */
+    public function removeSupport(\DR\PlatformBundle\Entity\Support $support)
+    {
+        $this->support->removeElement($support);
+    }
+
+    /**
+     * Get support
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSupport()
+    {
+        return $this->support;
+    }
+}
