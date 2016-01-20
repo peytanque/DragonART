@@ -3,14 +3,151 @@
 {% block title %}{{ parent() }} - Ajouter{% endblock %}
 
     {% block body %}
+
         <div class="container">
-            <div id="formArtpurchase">
-                 <h3>Ajouter un Achat</h3>
-                 <div class="well">
-                    {{ form(addArtpurchase) }}
-                 </div>
+            <h3>Ajouter un Achat</h3>
+            <form class="form-horizontal">
+                <div class="well">
+                    {{ form_start(addArtpurchase) }}
+                    <div class="form-group">
+                        <div class="control-label col-lg-2">
+                            {{ form_label(addArtpurchase.visualname, "Nom du visuel : ") }}
+                        </div>
+                        <div class="col-lg-9">
+                            {{ form_widget(addArtpurchase.visualname, {'attr': {'class': 'form-control', 'placeholder': 'Une pomme'}}) }}
+                        </div>
+                    </div></br>
+                    <div class="form-group">
+                        <div class="control-label col-lg-2">
+                            {{ form_label(addArtpurchase.linkfile, "Lien : ") }}
+                        </div>
+                        <div class="col-lg-9">
+                            {{ form_widget(addArtpurchase.linkfile, {'attr': {'class': 'form-control', 'placeholder': 'wwww.google.com'}}) }}
+                        </div>
+                    </div></br>
+                    <div class="form-group">
+                        <div class="control-label col-lg-2">
+                            {{ form_label(addArtpurchase.cost, "Prix : ") }}
+                        </div>
+                        <div class="col-lg-9">
+                            {{ form_widget(addArtpurchase.cost, {'attr': {'class': 'form-control', 'placeholder': '5,00€'}}) }}
+                        </div>
+                    </div></br>
+                    <div class="form-group">
+                        <div class="control-label col-lg-2">
+                            {{ form_label(addArtpurchase.refnum, "Numéro de référence : ") }}
+                        </div>
+                        <div class="col-lg-9">
+                            {{ form_widget(addArtpurchase.refnum, {'attr': {'class': 'form-control', 'placeholder': 'DKFNIZNFN5896'}}) }}
+                        </div>
+                    </div></br>
+                    <div class="form-group">
+                        <div class="control-label col-lg-2">
+                            {{ form_label(addArtpurchase.type, "Type : ") }}
+                        </div>
+                        <div class="col-lg-9">
+                            <select class="form-control">
+                                {% for type in types %}
+                                    <option value="{{ type.getId }}">{{ type.getName }}</option>
+                                {% endfor %}
+                            </select>
+                            {# {{ form_widget(addArtpurchase.type, {'attr': {'class': 'form-control', 'placeholder': 'TODO Liste'}}) }} #}
+                        </div>
+                    </div></br>
+                    <div class="form-group">
+                        <div class="control-label col-lg-2">
+                            {{ form_label(addArtpurchase.folder, "Dossier : ") }}
+                        </div>
+                        <div class="col-lg-9">
+                            {{ form_widget(addArtpurchase.folder, {'attr': {'class': 'form-control', 'placeholder': 'TODO Liste'}}) }}
+                        </div>
+                    </div></br>
+                    <div class="form-group">
+                        <div class="control-label col-lg-2">
+                            {{ form_label(addArtpurchase.orderform, "Bon de commande : ") }}
+                        </div>
+                        <div class="col-lg-9">
+                            {{ form_widget(addArtpurchase.orderform, {'attr': {'class': 'form-control', 'placeholder': 'BB8'}}) }}
+                        </div>
+                    </div></br>
+                    <div class="form-group">
+                        <div class="control-label col-lg-2">
+                            {{ form_label(addArtpurchase.supplier, "Fournisseur : ") }}
+                        </div>
+                        <div class="col-lg-9">
+                            {{ form_widget(addArtpurchase.supplier, {'attr': {'class': 'form-control', 'placeholder': 'TODO Liste'}}) }}
+                        </div>
+                    </div></br>
+                    <div class="form-group">
+                        <div class="control-label col-lg-2">
+                            {{ form_label(addArtpurchase.customer, "Client : ") }}
+                        </div>
+                        <div class="col-lg-9">
+                            {{ form_widget(addArtpurchase.customer, {'attr': {'class': 'form-control', 'placeholder': 'TODO Liste'}}) }}
+                        </div>
+                    </div></br>
+                    <div class="form-group">
+                        <div class="control-label col-lg-2">
+                            {{ form_label(addArtpurchase.startdate, "Date de début : ") }}
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="col-lg-4">{{ form_widget(addArtpurchase.startdate.day, {'attr': {'class': 'form-control'}}) }}</div>
+                            <div class="col-lg-4">{{ form_widget(addArtpurchase.startdate.month, {'attr': {'class': 'form-control'}}) }}</div>
+                            <div class="col-lg-4">{{ form_widget(addArtpurchase.startdate.year, {'attr': {'class': 'form-control'}}) }}</div>
+                            {# {{ form_widget(addArtpurchase.startdate, {'attr': {'class': 'form-control', 'placeholder': '01/01/2016'}}) }} #}
+                        </div>
+                    </div></br>
+                    <div class="form-group">
+                        <div class="control-label col-lg-2">
+                            {{ form_label(addArtpurchase.enddate, "Date de fin : ") }}
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="col-lg-4">{{ form_widget(addArtpurchase.enddate.day, {'attr': {'class': 'form-control'}}) }}</div>
+                            <div class="col-lg-4">{{ form_widget(addArtpurchase.enddate.month, {'attr': {'class': 'form-control'}}) }}</div>
+                            <div class="col-lg-4">{{ form_widget(addArtpurchase.enddate.year, {'attr': {'class': 'form-control'}}) }}</div>
+                            {# {{ form_widget(addArtpurchase.enddate, {'attr': {'class': 'form-control', 'placeholder': '02/01/2016'}}) }} #}
+                        </div>
+                    </div></br>
+                    <div class="form-group">
+                        <div class="control-label col-lg-2">
+                            {{ form_label(addArtpurchase.area, "Zone : ") }}
+                        </div>
+                        <div class="col-lg-9">
+                            {{ form_widget(addArtpurchase.area, {'attr': {'class': 'form-control', 'placeholder': 'TODO Array'}}) }}
+                        </div>
+                    </div></br>
+                    <div class="form-group">
+                        <div class="control-label col-lg-2">
+                            {{ form_label(addArtpurchase.support, "Support : ") }}
+                        </div>
+                        <div class="col-lg-9">
+                            {{ form_widget(addArtpurchase.support, {'attr': {'class': 'form-control', 'placeholder': 'TODO Array'}}) }}
+                        </div>
+                    </div></br>
+                    <div class="form-group">
+                        <div class="control-label col-lg-2">
+                            {{ form_label(addArtpurchase.copy, "Nombre exemplaires : ") }}
+                        </div>
+                        <div class="col-lg-9">
+                            {{ form_widget(addArtpurchase.copy, {'attr': {'class': 'form-control', 'placeholder': '5'}}) }}
+                        </div>
+                    </div></br>
+                    <div class="form-group">
+                        <div class="control-label col-lg-2">
+                            {{ form_label(addArtpurchase.comment, "Commentaire : ") }}
+                        </div>
+                        <div class="col-lg-9">
+                            {{ form_widget(addArtpurchase.comment, {'attr': {'class': 'form-control', 'placeholder': 'Ce commentaire ne sert a rien'}}) }}
+                        </div>
+                    </div></br>
+                    <div class="form-group">
+                        {{form_widget(addArtpurchase.save, {'label':'Ajouter','attr': {'class': 'btn btn-success'}}) }}
+                    </div>
+                    {{ form_end(addArtpurchase) }}
+                </div>
             </div>
-        </div>
+        </form>
+
         <div class="container">
             {# Ajouter un Type#}
             <div id="formType" class="col-lg-6">

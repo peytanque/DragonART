@@ -1,5 +1,4 @@
 <?php
-
 // src/DR/PlatformBundle/Controller/ArtController.php
 
 namespace DR\PlatformBundle\Controller;
@@ -17,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,34 +32,49 @@ class ArtController extends Controller
 
 	public function viewAction()
 	{
-		$tables = $this->getDoctrine()->getRepository('DRPlatformBundle:Artpurchase')->findAll();
-		$tables = $table->findAll();
-		return $this->render('DRPlatformBundle:Art:view.html.twig', array(
-			'tables' 		=> $tables,
+		$artpurchases = $this->getDoctrine()->getRepository('DRPlatformBundle:Artpurchase')->findAll();
+		$types = $this->getDoctrine()->getRepository('DRPlatformBundle:Type')->findAll();
+		$folders = $this->getDoctrine()->getRepository('DRPlatformBundle:Folder')->findAll();
+		$suppliers = $this->getDoctrine()->getRepository('DRPlatformBundle:Supplier')->findAll();
+		$customers = $this->getDoctrine()->getRepository('DRPlatformBundle:Customer')->findAll();
+		$areas = $this->getDoctrine()->getRepository('DRPlatformBundle:Area')->findAll();
+		$supports = $this->getDoctrine()->getRepository('DRPlatformBundle:Support')->findAll();
+		return $this->render('DRPlatformBundle:Art:view.html.twig', array(	
+			'artpurchases' 		=> $artpurchases,
+			'types' 			=> $types,
+			'folders' 			=> $folders,
+			'suppliers' 		=> $suppliers,
+			'customers' 		=> $customers,
+			'areas' 			=> $areas,
+			'supports' 			=> $supports,
 			));
 	}
 
-// --------------------------ADD-----------------------------------------
-
-	public function addAction(Request $request, array $options){
+	// TODO
+	public function addAction(Request $request){
 
 		$artpurchase = new Artpurchase();
+
+		$artpurchase->setStartdate(new \Datetime());
+		$artpurchase->setEnddate(new \Datetime());
+		$types = $this->getDoctrine()->getRepository('DRPlatformBundle:Type')->findAll();
+
 		$formArtpurchase = $this->createFormBuilder($artpurchase)
-		->add('id', 		IntegerType::class)
 		->add('visualname', TextType::class)
 		->add('linkfile', 	TextType::class)
 		->add('cost', 		IntegerType::class)
 		->add('refnum', 	TextType::class)
-		->add('type', 		TextType::class)
+		->add('type', 		Hiddentype::class)
 		->add('folder', 	TextType::class)
 		->add('orderform', 	TextType::class)
 		->add('supplier', 	TextType::class)
 		->add('customer', 	TextType::class)
 		->add('startdate', 	DateType::class)
 		->add('enddate', 	DateType::class)
-		->add('area', 		CollectionType::class, array(
-			'areaObject' => new Area())
+		// TODO
+		->add('area', 		CollectionType::class)
 		->add('support', 	CollectionType::class)
+		//
 		->add('copy', 		IntegerType::class)
 		->add('comment', 	TextType::class)
 		->add('save', 		SubmitType::class)
@@ -120,6 +135,7 @@ class ArtController extends Controller
 			}
 		}
 
+		// TODO
 		$area = new Area();
 		$formArea = $this->createFormBuilder($area)
 		->add('country', 	TextType::class)
@@ -132,6 +148,7 @@ class ArtController extends Controller
 			}
 		}
 
+		// TODO
 		$support = new Support();
 		$formSupport = $this->createFormBuilder($support)
 		->add('name', 		TextType::class)
@@ -151,10 +168,12 @@ class ArtController extends Controller
 			'addCustomer' 		=> $formCustomer->createView(),
 			'addArea'			=> $formArea->createView(),
 			'addSupport'		=> $formSupport->createView(),
-			'addArtpurchase'	=> $formArtpurchase->createView()
+			'addArtpurchase'	=> $formArtpurchase->createView(),
+			'types' 			=> $types,
 			));
 	}
 
+	// TODO
 	public function addArtpurchaseAction(Artpurchase $artpurchase)
 	{
 		$em = $this->getDoctrine()->getManager();
@@ -195,6 +214,7 @@ class ArtController extends Controller
 		return $this->redirectToRoute('dr_add');
 	}
 
+	// TODO
 	public function addAreaAction(Area $area)
 	{
 		$em = $this->getDoctrine()->getManager();
@@ -203,6 +223,7 @@ class ArtController extends Controller
 		return $this->redirectToRoute('dr_add');
 	}
 
+	// TODO
 	public function addSupportAction(Support $support)
 	{
 		$em = $this->getDoctrine()->getManager();
