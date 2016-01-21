@@ -57,20 +57,20 @@ class ArtController extends Controller
 
 		$artpurchase->setStartdate(new \Datetime());
 		$artpurchase->setEnddate(new \Datetime());
-		$types = $this->getDoctrine()->getRepository('DRPlatformBundle:Type')->findAll();
+		// $types = $this->getDoctrine()->getRepository('DRPlatformBundle:Type')->findAll();
 
 		$formArtpurchase = $this->createFormBuilder($artpurchase)
 		->add('visualname', TextType::class)
 		->add('linkfile', 	TextType::class)
 		->add('cost', 		IntegerType::class)
 		->add('refnum', 	TextType::class)
-		->add('type', 		Hiddentype::class)
+		->add('type', 		TextType::class)
 		->add('folder', 	TextType::class)
 		->add('orderform', 	TextType::class)
 		->add('supplier', 	TextType::class)
 		->add('customer', 	TextType::class)
-		->add('startdate', 	DateType::class)
-		->add('enddate', 	DateType::class)
+		->add('startdate', 	DateType::class, array('widget' => 'single_text'))
+		->add('enddate', 	DateType::class, array('widget' => 'single_text'))
 		// TODO
 		->add('area', 		CollectionType::class)
 		->add('support', 	CollectionType::class)
@@ -169,7 +169,7 @@ class ArtController extends Controller
 			'addArea'			=> $formArea->createView(),
 			'addSupport'		=> $formSupport->createView(),
 			'addArtpurchase'	=> $formArtpurchase->createView(),
-			'types' 			=> $types,
+			// 'types' 			=> $types,
 			));
 	}
 
@@ -179,7 +179,7 @@ class ArtController extends Controller
 		$em = $this->getDoctrine()->getManager();
 		$em->persist($artpurchase);
 		$em->flush();
-		return $this->redirectToRoute('dr_add');
+		return $this->redirectToRoute('dr_view');
 	}
 
 	public function addTypeAction(Type $type)
@@ -187,7 +187,7 @@ class ArtController extends Controller
 		$em = $this->getDoctrine()->getManager();
 		$em->persist($type);
 		$em->flush();
-		return $this->redirectToRoute('dr_add');
+		return $this->redirectToRoute('dr_view');
 	}
 
 	public function addFolderAction(Folder $folder)
@@ -195,7 +195,7 @@ class ArtController extends Controller
 		$em = $this->getDoctrine()->getManager();
 		$em->persist($folder);
 		$em->flush();
-		return $this->redirectToRoute('dr_add');
+		return $this->redirectToRoute('dr_view');
 	}
 
 	public function addSupplierAction(Supplier $suppliersociety)
@@ -203,7 +203,7 @@ class ArtController extends Controller
 		$em = $this->getDoctrine()->getManager();
 		$em->persist($suppliersociety);
 		$em->flush();
-		return $this->redirectToRoute('dr_add');
+		return $this->redirectToRoute('dr_view');
 	}
 
 	public function addCustomerAction(Customer $customersociety)
@@ -211,7 +211,7 @@ class ArtController extends Controller
 		$em = $this->getDoctrine()->getManager();
 		$em->persist($customersociety);
 		$em->flush();
-		return $this->redirectToRoute('dr_add');
+		return $this->redirectToRoute('dr_view');
 	}
 
 	// TODO
@@ -220,16 +220,14 @@ class ArtController extends Controller
 		$em = $this->getDoctrine()->getManager();
 		$em->persist($area);
 		$em->flush();
-		return $this->redirectToRoute('dr_add');
+		return $this->redirectToRoute('dr_view');
 	}
 
 	// TODO
 	public function addSupportAction(Support $support)
 	{
-		$em = $this->getDoctrine()->getManager();
-		$em->persist($support);
-		$em->flush();
-		return $this->redirectToRoute('dr_add');
+		$em = $this->getDoctrine()->getManager()->persist($support)->flush();
+		return $this->redirectToRoute('dr_view');
 	}
 
 // ----------------------------------------------------------------------------

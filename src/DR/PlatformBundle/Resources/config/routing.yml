@@ -11,4 +11,3 @@ dr_view:
 dr_add:
     path:     /add
     defaults: { _controller: DRPlatformBundle:Art:add }
-

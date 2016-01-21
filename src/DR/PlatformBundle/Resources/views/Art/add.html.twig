@@ -46,12 +46,7 @@
                             {{ form_label(addArtpurchase.type, "Type : ") }}
                         </div>
                         <div class="col-lg-9">
-                            <select class="form-control">
-                                {% for type in types %}
-                                    <option value="{{ type.getId }}">{{ type.getName }}</option>
-                                {% endfor %}
-                            </select>
-                            {# {{ form_widget(addArtpurchase.type, {'attr': {'class': 'form-control', 'placeholder': 'TODO Liste'}}) }} #}
+                            {{ form_widget(addArtpurchase.type, {'attr': {'class': 'form-control', 'placeholder': 'TODO Liste'}}) }}
                         </div>
                     </div></br>
                     <div class="form-group">
@@ -91,10 +86,7 @@
                             {{ form_label(addArtpurchase.startdate, "Date de début : ") }}
                         </div>
                         <div class="col-lg-9">
-                            <div class="col-lg-4">{{ form_widget(addArtpurchase.startdate.day, {'attr': {'class': 'form-control'}}) }}</div>
-                            <div class="col-lg-4">{{ form_widget(addArtpurchase.startdate.month, {'attr': {'class': 'form-control'}}) }}</div>
-                            <div class="col-lg-4">{{ form_widget(addArtpurchase.startdate.year, {'attr': {'class': 'form-control'}}) }}</div>
-                            {# {{ form_widget(addArtpurchase.startdate, {'attr': {'class': 'form-control', 'placeholder': '01/01/2016'}}) }} #}
+                            {{ form_widget(addArtpurchase.startdate, {'attr': {'class': 'form-control', 'placeholder': ''}}) }}
                         </div>
                     </div></br>
                     <div class="form-group">
@@ -102,10 +94,7 @@
                             {{ form_label(addArtpurchase.enddate, "Date de fin : ") }}
                         </div>
                         <div class="col-lg-9">
-                            <div class="col-lg-4">{{ form_widget(addArtpurchase.enddate.day, {'attr': {'class': 'form-control'}}) }}</div>
-                            <div class="col-lg-4">{{ form_widget(addArtpurchase.enddate.month, {'attr': {'class': 'form-control'}}) }}</div>
-                            <div class="col-lg-4">{{ form_widget(addArtpurchase.enddate.year, {'attr': {'class': 'form-control'}}) }}</div>
-                            {# {{ form_widget(addArtpurchase.enddate, {'attr': {'class': 'form-control', 'placeholder': '02/01/2016'}}) }} #}
+                            {{ form_widget(addArtpurchase.enddate, {'attr': {'class': 'form-control', 'placeholder': ''}}) }}
                         </div>
                     </div></br>
                     <div class="form-group">
@@ -158,7 +147,7 @@
                         {{ form_label(addType.name, "Nom : ") }}
                         {{ form_widget(addType.name, {'attr': {'class': 'form-control', 'placeholder': 'Nom du type'}}) }}
                     </div>
-                    {{form_widget(addType.save, {'label':'Ajouter','attr': {'class': 'btn btn-success'}}) }}
+                    {{ form_widget(addType.save, {'label':'Ajouter','attr': {'class': 'btn btn-success'}}) }}
                     {{ form_end(addType) }}
                 </div>
             </div>
@@ -232,87 +221,4 @@
                 </div>
             </div>
         </div>
-        {# <div class="container">
-            <table width="100%" border="1">
-                <tr>
-                    <td width="50%">
-                        <form>
-                            <h4 align="center">Dossier</h4>
-                            <div class="row">
-                                <div class="col-lg-1"></div>
-                                <div class="col-lg-10">
-                                    <input type="text" class="form-control" placeholder="Numero de dossier" id="num_dossier"/>
-                                </div>
-                                <div class="col-lg-1"></div>
-                            </div></br>
-                            <div class="row">
-                                <div class="col-lg-1"></div>
-                                <div class="col-lg-10">
-                                    <input type="text" class="form-control" placeholder="Nom du dossier/projet" id="projet_dossier"/>
-                                </div>
-                                <div class="col-lg-1"></div>
-                            </div></br>   
-                            <div class="row">
-                                <p align="center">
-                                    <button type="submit" class="btn btn-success" align="center">Ajouter !</button>
-                                </p>
-                            </div>
-                        </form>
-                    </td>
-                    <td width="50%">
-                        <form>
-                            <h4 align="center">Bon de commande</h4>
-                            <div class="row">
-                                <div class="col-lg-1"></div>
-                                <div class="col-lg-10">
-                                    <input type="text" class="form-control" placeholder="Numero de bon de commande" id="num_bdc">
-                                </div>
-                                <div class="col-lg-1"></div>
-                            </div></br>
-                            <div class="row">
-                                <p align="center">
-                                    <button type="submit" class="btn btn-success" align="center">Ajouter !</button>
-                                </p>
-                            </div>
-                        </form>                    
-                    </td>
-                </tr>
-                <tr>
-                    <td width="50%">
-                        <form>
-                            <h4 align="center">Fournisseur</h4>
-                            <div class="row">
-                                <div class="col-lg-1"></div>
-                                <div class="col-lg-10">
-                                    <input type="text" class="form-control" placeholder="Nom fournisseur" id="nom_fournisseur">
-                                </div>
-                                <div class="col-lg-1"></div>
-                            </div></br>
-                            <div class="row">
-                                <p align="center">
-                                    <button type="submit" class="btn btn-success" align="center">Ajouter !</button>
-                                </p>
-                            </div>
-                        </form>
-                    </td>
-                    <td width="50%">
-                        <form>
-                            <h4 align="center">Client</h4>
-                            <div class="row">
-                                <div class="col-lg-1"></div>
-                                <div class="col-lg-10">
-                                    <input type="text" class="form-control" placeholder="Nom du client" id="nom_client">
-                                </div>
-                                <div class="col-lg-1"></div>
-                            </div></br>
-                            <div class="row">
-                                <p align="center">
-                                    <button type="submit" class="btn btn-success" align="center">Ajouter !</button>
-                                </p>
-                            </div>
-                        </form>
-                    </td>
-                </tr>
-            </table>
-        </div> #}
     {% endblock %}
